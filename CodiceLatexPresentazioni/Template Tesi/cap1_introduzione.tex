@@ -1,0 +1,40 @@
+\onehalfspacing
+
+\chapter{Introduzione}
+
+\medskip
+
+Il 6 agosto 1991 venne inventata una delle tecnologie più importanti del secolo, destinata a rivoluzionare la società: questa invenzione è il {\tt World Wide Web}. In quel giorno, l'informatico inglese Sir Tim Berners-Lee, fondatore del web, pubblicò presso il CERN di Ginevra il primo sito internet della storia che descriveva il progetto {\tt WWW}. 17 giorni dopo il sito venne per la prima volta visitato da un utente esterno al centro di ricerca; da quel giorno il web si diffuse sempre di più, espandendosi ad una velocità impressionante. Oggi, nell'anno 2021, dei circa 7.83 miliardi di persone esistenti al mondo, ben 4.66 miliardi hanno accesso ad internet, per un numero complessivo di utenti che è pari a il 59.5\% della popolazione mondiale totale \cite{wearesocial}. Berners-Lee aveva originariamente immaginato il web come: "una piattaforma aperta che avrebbe permesso a tutti, ovunque, di condividere informazioni, di accedere ad opportunità e di collaborare attraverso differenti aree geografiche e confini culturali" \cite{worldwideweb}. Questa visione di Berners-Lee è tuttavia venuta a mancare con il passare degli anni, in quanto il web è diventato un luogo sempre più posto sotto il diretto controllo delle grandi multinazionali, le quali, attraverso il possesso dei dati degli utenti, monopolizzano la rete, impedendo agli utenti stessi di essere i reali proprietari del web. A seguito dello scoppio di alcuni scandali, come ad esempio quello relativo a Facebook-Cambridge Analytica \cite{facebook}, i quali hanno messo in evidenza le violazioni perpetuate da alcuni dei grandi colossi del web ai danni degli utenti di internet e della loro privacy, Berners-Lee ha deciso, in collaborazione col MIT di Boston, di fondare un nuovo progetto finalizzato a ridecentralizzare il web, esattamente come lo aveva immaginato il su fondatore nella sua visione originale. Tale progetto, che prende il nome di {\tt Solid} (Social Linked Data), mira a dividere il piano delle applicazioni da quello dei dati, permettendo agli utenti di controllare in maniera diretta i propri dati personali, senza lasciarli sotto il controllo delle grandi multinazionali. {\tt Solid} è una specifica che permette agli utenti di salvare i propri dati in sicurezza all'interno di archivi di dati decentralizzati chiamati {\tt Pod}. I {\tt Pod} sono come dei server web personali e sicuri per la memorizzazione dei dati dell'utente. Una volta salvati i dati all'interno del {\tt Pod} di un utente, costui è in grado di controllare quali applicazioni e quali altri utenti possono avere accesso a tali dati. {\tt Solid} mira quindi a "cambiare il modo in cui funzionano le attuali applicazioni Web, per ottenere un reale possesso dei dati ed una maggiore privacy da parte degli utenti" \cite{mitsolid}. Allo stato attuale, questa tecnologia risuta, tuttavia, essere ancora in fase di sviluppo.
+
+\bigskip
+
+Il presente progetto di tesi è finalizzato alla creazione di applicazioni decentralizzate utilizzando la tecnologia {\tt Solid}, con il fine di evidenziare i vantaggi dovuti al loro utilizzo e di mostrare le differenze tra una normale applicazione ed una decentralizzata. Poiché le applicazioni decentralizzate non salvano localmente alcun dato relativo all'utente, quest'ultimo è portato a scegliere quali applicazioni utilizzare soltanto in base alla qualità del servizio che queste offrono e non per il possesso esclusivo dei suoi dati. A tal proposito ogni dato salvato all'interno del {\tt Pod} può essere riutilizzato dagli utenti in base alle loro necessità, permettendo eventualmente ad altre applicazioni di accedervi o di revocarne i permessi, in lettura o in scrittura, precedemente concessi ad applicazioni o utenti.
+
+\bigskip
+
+
+Nello specifico, il presente elaborato di tesi è finalizzato allo sviluppo di due differenti applicazioni che formano il sistema denominato {\tt SADeB} (Solid Authenticity Decentralized Blog). Il sistema {\tt SADeB} ha lo scopo di mettere in evidenza il funzionamento di un'applicazione {\tt Solid}, mostrando le modalità con cui un utente può permettere ad un'applicazione di accedere ai dati contenuti all'interno del proprio {\tt Pod} e le modalità con cui tale applicazione {\tt Solid}, autorizzata dall'utente, può andare a leggere o a scrivere i dati contenuti in esso. Nel dettaglio le due applicazioni che formano il sistema {\tt SADeB} prendono il nome di {\tt my-solid-blog} e {\tt blog-validator}: la prima consiste in un social network, decentralizzato, che permette agli utenti {\tt Solid} di creare e gestire blog personali; la seconda applicazione, svincolata da {\tt my-solid-blog}, ha come scopo la validazione dei contenuti mostrati all'interno di {\tt my-solid-blog}, con il fine di prevenire la diffusione di informazioni false su tale piattaforma. Differentemente da un altro social network non decentralizzato, {\tt my-solid-blog} permette all'utente proprietario del {\tt Pod} di visualizzare quali dati vengono effettivamente salvati dall'applicazione e di controllare in prima persona chi li sta utilizzando. Per implementare queste applicazioni sono state utilizzate la libreria {\tt JavaScript} React e, in particolare, il comando create-react-app, per lo sviluppo di {\tt my-solid-blog}, e la multipiattaforma orientata agli eventi {\tt Node.js} per lo sviluppo dell'applicazione {\tt blog-validator}. 
+
+\clearpage
+
+vengono qui elencati i capitoli della tesi e i loro contenuti.
+
+\bigskip
+\bigskip
+
+\textbf{Capitolo 2: Concetti preliminari e tecnologie utilizzate}:  introduzione di alcuni concetti necessari per la comprensione del progetto di tesi, descrivendo le nozioni principali relative alla tecnologia {\tt Solid}. Sono stati successivamente descritti ulteriori argomenti
+utilizzati per lo sviluppo del sistema {\tt SADeB}, come {\tt Inrupt}, {\tt React}, {\tt Bulma} e {\tt Node.js}.
+
+\bigskip
+
+\textbf{Capitolo 3: Motivazioni del progetto}: In questo capitolo vengono illustrate le motivazioni che hanno portato il premio Turing Sir Tim Berners-Lee a fondare il progetto {\tt Solid}, vengono poi elencate le finalità del sistema {\tt SADeB}. 
+
+\bigskip
+
+\textbf{Capitolo 4: Il problema affrontato}: Il capitolo contiene le specifiche descritte nel dettaglio del sistema {\tt SADeB}, enunciando le modalità con cui le applicazioni di tale sistema gestiscono la procedura di autenticazione e la lettura/scrittura dei dati contenuti all'interno del {\tt Pod}.
+
+\bigskip
+
+\textbf{Capitolo 5: Il sistema SADeB}: Vengono qui descritti nel dettaglio il funzionamento e la struttura delle due applicazione che formano il sistema {\tt SADeB}, ovvero {\tt my-solid-blog} e {\tt blog-validator}.
+
+\clearpage

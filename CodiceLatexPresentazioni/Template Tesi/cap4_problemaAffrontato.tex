@@ -1,0 +1,267 @@
+
+\chapter{Il problema affrontato}
+
+\medskip
+
+L'obiettivo del presente elaborato è mostrare il funzionamento di un blog decentralizzato sviluppato tramite tecnologia {\tt Solid}, mettendo in evidenza i benefici che un'applicazione {\tt Solid} può apportare all'utente.
+
+\medskip
+
+Il progetto è composto da due applicazioni differenti e svincolate tra di loro. La prima è chiamata {\tt my-solid-blog}; tale applicazione offre due differenti tipologie di servizi: la prima consiste nel permettere la creazione di un proprio blog, salvando tutte le informazioni di interesse all'interno del suo {\tt Pod}. In questo caso, per poter ottenere il diritto in scrittura sui dati presenti all'interno del {\tt Pod}, l'applicazione richiede preventivamente all'utente di autenticarsi con il proprio {\tt Solid Idenitity Provider}; il secondo servizio implementato in {\tt my-solid-blog} consiste nel permettere la lettura di blog di altre persone una volta conosciuta la loro {\tt webId}. Per questa seconda funzionalità la procedura di autenticazione  con il proprio {\tt Solid Identity Provider} non è richiesta.
+
+\medskip
+
+La seconda applicazione trattata in questo elaborato di tesi, chiamata {\tt blog-validator}, permette, su richiesta dell'utente, di effettuare controlli riguardo l'autenticità dei dati mostrati da {\tt my-solid-blog}. Tale applicazione ha lo scopo di evidenziare la semplicità con cui un'operazione di questo tipo può essere implementata in {\tt Solid}.
+
+\bigskip
+
+\section{Obiettivi del progetto}
+
+\medskip
+
+Il sistema {\tt SADeB} consiste di due applicazioni differenti: {\tt my-solid-blog} e {\tt blog-validator}. Vengono ora elencate le specifiche relative all'applicazione\\{\tt my-solid-blog}.
+
+\medskip
+
+\begin{itemize}
+	\item L'applicazione {\tt my-solid-blog} deve essere completamente decentralizzata, rispettando i principi della tecnologia {\tt Solid}.
+	\item Una volta avviata l'applicazione, l'utente deve poter scegliere la modalità con cui interagire con l'app, indicando se vuole autenticarsi con il proprio {\tt Solid Identity Provider} e modificare, creare ed eliminare i dati presenti all'interno del proprio blog, oppure se inserire la {\tt webId} di un altro utente per visualizzare il blog di quest'ultimo.
+	\item L'applicazione deve implementare un meccanismo di autenticazione con il server {\tt Solid}, sfruttando le librerie messe a disposizione da {\tt Inrupt}.
+	\item Una volta che l'utente si è autenticato con il proprio {\tt Solid Identity Provider}, l'applicazione {\tt my-solid-blog} deve poter controllare se esiste all'interno del {\tt Pod} dell'utente un {\tt SolidDataset} relativo al blog. In questo caso, {\tt my-solid-blog} deve caricare tale {\tt SolidDataset} per poter leggere e modificare i dati contenuti in esso. Altrimenti l'applicazione deve creare tale dataset all'interno del {\tt Pod} dell'utente. Il nome del {\tt SolidDataset} utilizzato dall'applicazione è {\tt articlelist.ttl}.
+	\item I dati contenuti all'interno del {\tt SolidDataset} {\tt articlelist.ttl} utilizzato da\\ {\tt my-solid-blog}, devono rappresentare degli articoli da pubblicare sul blog\\relativo all'utente che è proprietario del {\tt Pod}. Per poter rappresentare tali dati, l'applicazione deve far uso del vocabolario {\tt RDF} {\tt Schema}.
+	\item Ogni articolo deve avere un titolo, un testo che ne rappresenti il contenuto, una data di creazione e un identificatore univoco. Ogni articolo è un oggetto e un'istanza della classe {\tt TextDigitalDocument} del vocabolario {\tt Schema}. L'applicazione deve permettere all'utente di visualizzare il titolo, il contenuto e la data di creazione di ciascun articolo presente.
+	\item L'applicazione {\tt my-solid-blog} deve permettere all'utente autenticato di leggere, modificare e cancellare i dati, cioé gli articoli, presenti all'interno del {\tt SolidDataset} {\tt Articlelist.ttl}. A tal proposito {\tt my-solid-blog} deve utilizzare le librerie {\tt Inrupt} per poter svolgere queste operazioni sui dati contenuti all'interno del {\tt Pod}. 
+	\item L'utente autenticato deve essere, inoltre, in grado di scrivere nuovi articoli all'interno del proprio blog.
+	\item Un utente può scegliere di accedere al contenuto di un blog di un secondo utente, inserendo la sua {\tt webId} senza passare per alcun processo di autenticazione. In questo caso, se esiste il {\tt SolidDataset} {\tt articlelist.ttl} all'interno del {\tt Pod} corrispondente alla {\tt webId} inserita, l'applicazione deve permettere all'utente di visualizzare gli articoli relativi alla {\tt webId} inserita.
+	\item Se l'utente accede ad un blog inserendo la {\tt webId} corrispondente al {\tt Pod} ove questo è memorizzato, senza quindi passare per un processo di autenticazione, non deve essere in grado di modificare il contenuto degli articoli all'interno di tale {\tt Pod}. Inoltre l'utente non autenticato non deve avere i permessi necessari per scrivere nuovi articoli all'interno del {\tt SolidDataset} {\tt articlelist.ttl} corrispondente alla {\tt webId} inserita.
+	\item L'applicazione {\tt my-solid-blog} deve poter comunicare tramite il protocollo {\tt HTTP} con il server {\tt blog-validator}, per potergli inviare, su richiesta dell'utente, i dati necessari ad effettuare un controllo all'interno del {\tt Pod} del proprietario di questi dati. Per implementare tale funzionalità, {\tt my-solid-blog} deve renderizzare per ogni articolo un pulsante {\tt Check} per innescare tale controllo sull'autenticità dei contenuti visualizzati. Il controllo è riferito al singolo articolo selezionato, e non all'intero {\tt SolidDataset}.
+	\item Ogni utente, indipendentemente dal fatto che abbia completato l'operazione di autenticazione o meno con il server {\tt Solid}, deve essere in grado di richiedere un controllo sull'autenticità dei contenuti mostrati da {\tt my-solid-blog}.
+	\item L'applicazione {\tt my-solid-blog} deve mettere a disposizione un link che rimandi a {\tt blog-validator} per poter permettere a tutti gli utenti, autenticati e non, di verificare che eventuali controlli sull'autenticità dei dati effettuati siano stati eseguiti correttamente.
+	\item Ogni utente deve poter visualizzare l'URL associato all'articolo che sta leggendo, ovvero l'URL ove tale risorsa è stata memorizzata.
+	\item Le interfacce grafiche dell'applicazione, create tramite {\tt React}, devono essere semplici e intuitive, in modo tale da rendere l'applicazione user friendly.
+\end{itemize}
+
+\bigskip
+
+Vengono qui di seguito elencate le specifiche relative all'applicazione {\tt blog-validator}.
+
+\begin{itemize}
+	\item Tramite il protocollo {\tt HTTP}, l'applicazione deve poter ricevere da\\{\tt my-solid-blog} le informazioni necessarie per effettuare un controllo sull'autenticità dei dati mostrati. In particolare {\tt blog-validator} si occupa di verificare che un singolo articolo, scelto dall'utente, sia effettivamente presente all'interno del {\tt Pod} dell'utente proprietario del blog. Una volta terminato tale controllo, l'applicazione {\tt blog-validator} deve inviare a {\tt my-solid-blog} l'esito del controllo stesso.
+	\item I possibili esiti di un controllo sono i seguenti:
+	
+	\smallskip
+	
+	\textbf{1)} L'articolo in questione non esiste all'interno del {\tt Pod} del proprietario.\\
+	\textbf{2)} L'articolo esiste, ma il contenuto risulta essere differente.\\
+	\textbf{3)} L'articolo esiste e presenta lo stesso contenuto, ma la data in cui è stato pubblicato è differente.\\
+	\textbf{4)} Il controllo sull'autenticità del contenuto ha dato un risultato positivo: in questo caso il server non ha rilevato alcuna anomalia.
+	\item {\tt blog-validator} deve mettere a disposizione un URL per permettere all'utente di visualizzare i dati relativi ai controlli già effettuati sul {\tt Pod} di un utente. Questa funzionalità di {\tt blog-validator} serve ad assicurarsi che {\tt my-solid-blog} abbia inviato correttamente i dati relativi ai controlli effettuati, senza manometterli.
+	\item {\tt blog-validator}, infine, deve poter permettere all'utente di effettuare controlli manualmente sulle risorse relative ai blog creati da {\tt my-solid-blog}; insererendo l'url del articolo che si vuole controllare e del {\tt SolidDataset} dove è memorizzato, {\tt blog-validator} deve mostrare all'utente contenuto, titolo e data di creazione dell'articolo, nel caso in cui questo sia effettivamente presente all'interno del {\tt Pod}.
+\end{itemize}
+
+\bigskip
+
+\section{Modalità di accesso ai dati contenuti nel Pod}
+
+\medskip
+
+Nel corso dello svolgimento del progetto si è rivelata fondamentale la comprensione delle modalità con cui un'applicazione {\tt Solid} debba accedere ai dati contenuti all'interno del {\tt Pod}. Innanzitutto entrambe le applicazioni, {\tt my-solid-blog} e {\tt blog-validator}, utilizzano la libreria {\tt Inrupt} {\tt solid-client} per poter interagire con tali dati; la libreria mette a disposizione una serie di funzioni per poter scaricare {\tt SolidDataset} e per poter modificare gli oggetti al suo interno. 
+
+\bigskip
+
+Vengono qui mostrate le funzioni più importanti contenute in tale libreria:
+
+\bigskip
+\medskip
+
+$getSolidDataset(url, options?): Promise<SolidDataset \& WithServerResourceInfo>$
+
+\bigskip
+
+Funzione che restituisce una {\tt promessa} che si risolve nel {\tt SolidDataset} corrispondente all'URL indicato; l'utente deve possedere il diritto in lettura su tale risorsa per poter caricare tale {\tt SolidDataset}. A tal scopo, se necessario, può passare alla funzione i dati relativi alla sessione di autenticazione con il {\tt Solid Identity Provider}, per poter acquisire tale diritto in lettura.
+
+\bigskip
+\medskip
+
+$saveSolidDatasetAt<Dataset>(url, solidDataset, options?): Promise<Dataset\\ \& WithServerResourceInfo \& WithChangeLog>$
+
+\bigskip
+
+Tale funzione permette di salvare un determinato {\tt SolidDataset} all'interno dell'URL specificato; si possono passare a questa funzione anche i dati relativi alla sessione di autenticazione con il {\tt Solid Identity Provider} per acquisire diritto in scrittura sulle risorse del {\tt Pod}. Il possesso del diritto in scrittura è una condizione necessaria per poter utilizzare tale funzione. Restituisce una {\tt promessa} che si risolve nel nuovo {\tt SolidDataset} presente a seguito dell'esecuzione di questa funzione. Tale funzione, inoltre, può essere utilizzata per tenere traccia dei cambiamenti apportati all'interno di tale {\tt SolidDataset}.
+
+\bigskip
+\medskip
+
+$createSolidDataset(): SolidDataset$
+
+\bigskip
+
+Permette di creare un nuovo {\tt SolidDataset}.
+
+\bigskip
+\medskip
+
+$getThing(solidDataset, thingUrl, options?): ThingPersisted | null$
+
+\bigskip
+
+Ritorna un oggetto presente all'interno di un {\tt SolidDataset}, è necessario passare a tale funzione il {\tt SolidDataset} che contiene tale oggetto e l'URL relativo all'oggetto che si vuole ottenere. La funzione ritorna il valore {\tt null} se l'oggetto specificato non esiste.
+
+\medskip
+\bigskip
+
+$getThingAll(solidDataset, options?): Thing[]$
+
+\bigskip
+
+Ritorna un array contenente tutti gli oggetti presenti all'interno di un {\tt SolidDataset}.
+
+\bigskip
+\medskip
+
+$createThing(options): ThingPersisted$
+
+\bigskip
+
+Crea un nuovo oggetto.
+
+\bigskip
+\medskip
+
+$setThing<Dataset>(solidDataset, thing): Dataset \& WithChangeLog$
+
+\bigskip
+
+Permette di aggiungere un nuovo oggetto all'interno di un {\tt SolidDataset}, rimpiazzando evenutali precedenti instanze di tale oggetto.
+
+\bigskip
+\medskip
+
+$removeThing<Dataset>(solidDataset, thing): Dataset \& WithChangeLog$
+
+\bigskip
+
+Rimuove un oggetto contenuto all'interno di un {\tt SolidDataset}.
+
+\bigskip
+\medskip
+
+$asUrl(thing, baseUrl): UrlString$
+
+\bigskip
+
+Restituisce l'URL dell'oggetto passato come parametro.
+
+\bigskip
+\medskip
+
+$getUrl(thing, property): UrlString | null$
+
+\bigskip
+
+Permette di restituire l'oggetto di uno {\tt statement} contenuto all'interno di un oggetto. È necessario passare a tale funzione l'oggetto e il predicato di tale {\tt risorsa}, cioè il soggetto e il predicato dello {\tt statement} {\tt RDF}. Restituisce il valore {\tt null} se tale {\tt risorsa} non esiste o se il tipo della {\tt risorsa} non è URL. Se esistono più {\tt risorse} di tipo URL corrispondenti a tale predicato, la funzione restituisce un URL fra quelli presenti.
+
+\bigskip
+\medskip
+
+$getUrlAll(thing, property): UrlString[]$
+
+\bigskip
+
+Restituisce tutti i valori URL relativi alla proprietà di una {\tt risorsa}.
+
+\bigskip
+
+Esistono inoltre funzioni simili per poter ottenere differenti tipologie di dati, come ad esempio: {\tt string, boolean, decimal, integer} e altre ancora.
+
+\medskip
+\bigskip 
+
+$addUrl<T>(thing, property, value): T$
+
+\bigskip
+
+Crea un nuovo oggetto con un URL aggiunto come proprietà; eventuali altri valori relativi a tale proprietà non vengono modificati.
+
+\bigskip
+
+Esistono funzioni simili per poter aggiungere proprietà relative ad altre tipologie di dati, come per esempio: {\tt string, boolean, decimal, integer} e altre.
+
+\medskip
+\bigskip
+
+$setUrl<T>(thing, property, value): T$
+
+\bigskip
+
+Crea un nuovo oggetto con gli esistenti valori relativi ad una proprietà rimpiazzati con l'URL passato come parametro.
+
+\bigskip
+
+Esistono funzioni simili per poter sostituire proprietà relative ad altre tipologie di dati, come ad esempio: {\tt string, boolean, decimal, integer} e altre.
+
+\bigskip
+\medskip
+
+Per accedere ad alcuni dati relativi alle informazioni sul profilo dell'utente sono stati utilizzati anche i componenti della libreria {\tt Inrupt} {\tt solid-ui-react} $<CombinedDataProvider>$ e $<Text>$.
+
+\bigskip
+
+\section{Modalità di autenticazione con il Solid Identity Provider}
+
+\medskip
+
+Come già accennato riguardo alle specifiche relative all'applicazione {\tt my-solid-blog}, l'applicazione in questione deve poter permettere ai propri utenti di autenticarsi con il proprio {\tt Solid Indentity Provider} per modificare il proprio blog. Per implementare questa funzionalità è stata utilizzata la libreria {\tt Inrupt} {\tt solid-ui-react}, la quale mette a disposizione componenti {\tt React} per autenticarsi e per leggere/scrivere dati.
+
+\bigskip
+
+Vengono ora elencati i componenti appartenenti a questa libreria usati per implementare tale funzionalità:
+
+\bigskip
+\medskip
+
+$<SessionProvider>$
+
+\bigskip
+
+Tale componente è usato per avvolgere la propria applicazione; è necessario passare al compomente una {\tt sessionId} universalmente unica. La {\tt sessionId} utilizzata nel caso dell'applicazione {\tt my-solid-blog} è {\tt my-solid-blog}. Tale componente permette di utilizzare all'interno del progetto il componente $<LoginButton>$.
+
+\bigskip
+\medskip
+
+$<LoginButton>$
+
+\bigskip
+
+Permette di autenticarsi con il proprio {\tt Solid Identity Provider}, avviando quindi il procedimento di autenticazione descritto all'interno del capitolo 2. È necessario passare a tale componente le seguenti informazioni:
+
+\begin{itemize}
+	\item {\tt oidcIssuer}: in questo campo va indicato l'URL del {\tt Solid Identity Provider} con il quale ci si vuole autenticare, come per esempio {\tt https://inrupt.net/}.
+	\item {\tt redirectUrl}: indica l'URL sul quale l'utente viene reindirizzato a seguito del processo di autenticazione. Poiché l'applicazione {\tt my-solid-blog} è di tipo single-page e utilizza la porta 3000, il {\tt redirectUrl} usato è pari a {\tt http://localhost:3000/}.
+	\item {\tt authOptions}: opzionale, serve ad indicare informazioni aggiuntive relative alla sessione di autenticazione. {\tt my-solid-blog} utilizza tale attributo per indicare il nome dell'applicazione che si sta autenticando con il server {\tt Solid}, che è semplicemente {\tt my-solid-blog}.
+\end{itemize}
+
+\bigskip
+\medskip
+
+$useSession()$
+
+\bigskip
+
+Funzione contenuta all'interno della libreria {\tt solid-ui-react}, restituisce dati relativi alla sessione di autenticazione; il codice sotto indicato consente di raccogliere tali dati.
+
+\bigskip
+
+{\tt const { session } = useSession();}
+
+\bigskip
+
+L'oggetto {\tt session} contiene quindi dati relativi alla propria sessione di autenticazione, come ad esempio:
+
+\begin{itemize}
+	\item {\tt session.info.webId}: contiene la {\tt webId} dell'utente autenticato.
+	\item {\tt session.info.isLoggedIn}: proprietà pari a {\tt true} se l'utente ha completato il processo di autenticazione ed è attualmente loggato con il proprio {\tt Solid Identity Provider}, altrimenti tale proprietà è pari a {\tt false}.
+	\item {\tt session.fetch}: metodo usato per interagire con i dati contenuti all'interno del {\tt Pod}, usando le informazioni relative al login dell'utente. Tale funzione può essere passata come metodo alle funzioni {\tt getSolidDatasetAt} e {\tt saveSolidDatasetAt} per ottenere i permessi necessari a completare tali operazioni sui dati all'interno del {\tt Pod}.
+\end{itemize}
+
+\clearpage

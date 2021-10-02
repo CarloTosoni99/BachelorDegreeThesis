@@ -1,0 +1,41 @@
+\BOOKMARK [0][-]{chapter.1}{1 Introduzione}{}% 1
+\BOOKMARK [0][-]{chapter.2}{2 Concetti preliminari e tecnologie utilizzate}{}% 2
+\BOOKMARK [1][-]{section.2.1}{2.1 Solid}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{2.2 Terminologia Solid}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{2.3 Linked Data}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{2.4 Struttura di un Pod}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.5}{2.5 Tipologie di permesso in Solid}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.6}{2.6 Autenticazione in Solid}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.7}{2.7 Ulteriori chiarimenti riguardo la tecnologia Solid}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.8}{2.8 Inrupt}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.9}{2.9 React}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.10}{2.10 Bulma}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.11}{2.11 Node.js}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.12}{2.12 Altri strumenti utilizzati}{chapter.2}% 14
+\BOOKMARK [0][-]{chapter.3}{3 Motivazioni del progetto}{}% 15
+\BOOKMARK [1][-]{section.3.1}{3.1 L'evoluzione del World Wide Web}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{3.2 Nascita del progetto Solid}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.3}{3.3 Nascita del sistema SADeB}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{4 Il problema affrontato}{}% 19
+\BOOKMARK [1][-]{section.4.1}{4.1 Obiettivi del progetto}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{4.2 Modalit\340 di accesso ai dati contenuti nel Pod}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.3}{4.3 Modalit\340 di autenticazione con il Solid Identity Provider}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{5 Il sistema SADeB}{}% 23
+\BOOKMARK [1][-]{section.5.1}{5.1 Directory e file presenti in my-solid-blog}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{5.2 Directory src}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.3}{5.3 Gestione delle interfacce grafiche}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.4}{5.4 Container e risorse utilizzati per la gestione del blog}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.5}{5.5 Scaricamento del SolidDataset articlelist.ttl}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.6}{5.6 Struttura di articlelist.ttl}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.7}{5.7 Gestione degli articoli}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.8}{5.8 Comunicazione con l'applicazione blog-validator}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.9}{5.9 Utilizzo dell'hook Effect}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.10}{5.10 Link a blog-validator}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.11}{5.11 Directory e file presenti in blog-validator}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.12}{5.12 Tecnologie utilizzate per il funzionamento di blog-validator}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.13}{5.13 API methods di blog-validator}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.14}{5.14 Controllo sull'autenticit\340 dei dati}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.15}{5.15 Gestione del database solid.bd}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.16}{5.16 Il metodo GET, http://localhost:8081/check}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.17}{5.17 Possibili futuri miglioramenti del sistema SADeB}{chapter.5}% 40
+\BOOKMARK [0][-]{chapter.6}{6 Conclusioni e sviluppi futuri}{}% 41

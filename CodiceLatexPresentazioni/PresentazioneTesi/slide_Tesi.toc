@@ -1,0 +1,7 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\beamer@sectionintoc {2}{Il Problema Affrontato}{3}{0}{1}
+\beamer@sectionintoc {3}{Requisiti}{14}{0}{2}
+\beamer@sectionintoc {4}{Architettura del sistema}{16}{0}{3}
+\beamer@sectionintoc {5}{Esempi di utilizzo}{37}{0}{4}
+\beamer@sectionintoc {6}{Conclusioni}{43}{0}{5}
